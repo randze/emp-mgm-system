@@ -1,0 +1,7 @@
+# ignore node modules
+node_modules/
+# ignore env variables
+.env
+# other files to ignore
+package-lock.json
+.DS_Store
