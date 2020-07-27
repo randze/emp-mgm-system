@@ -1,7 +1,12 @@
+# ignore mac files
+.DS_Store
 # ignore node modules
 node_modules/
-# ignore env variables
-.env
-# other files to ignore
 package-lock.json
-.DS_Store
+
+#lint ignore
+.eslintignore
+.eslintrc.json
+
+#other
+.vscode/
