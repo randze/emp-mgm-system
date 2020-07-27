@@ -21,16 +21,31 @@ const orm = {
 		ON r.department_id = d.id`)
     },
     viewTable: (table) => {
-        return db.query(`SELECT * FROM ${table}`)
+        return db.query('SELECT * FROM ??', table)
     },
     returnRoles: async () => {
         const roles = await db.query('SELECT title, id FROM role')
         return roles.map(data => ({name: data.title, value: data.id }))
     },
-    insertOne: (data) => {
-        return db.query('INSERT INTO employee SET ?', data)
+    insertOne: (table, data) => {
+        return db.query('INSERT INTO ?? SET ?', [table, data])
+    },
+    returnDepartment: async () => {
+        const department = await db.query('SELECT name, id FROM department')
+        return department.map(data => ({name: data.name, value: data.id }))
+    },
+    employeeNames: async () => {
+        const names = await db.query('SELECT CONCAT(first_name," ",last_name) AS name, id FROM employee')
+        return names.map(data => ({name: data.name, value: data.id }))
+    },
+    updateRole: (value, id) => {
+        return db.query( 'UPDATE employee SET ? WHERE id=?',
+            [ { role_id: value}, id ] )
+    },
+    updateManager: (value, id) => {
+        return db.query( 'UPDATE employee SET ? WHERE id=?',
+            [ { manager_id: value}, id ] )
     }
-
 }
 
 module.exports = orm
