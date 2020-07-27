@@ -45,7 +45,8 @@ async function mainApp() {
                 choices: [
                     'Employee',
                     'Role',
-                    'Department'
+                    'Department',
+                    'Go back'
                 ]
             },
             {
@@ -56,7 +57,8 @@ async function mainApp() {
                 choices: [
                     'Employee',
                     'Role',
-                    'Department'
+                    'Department',
+                    'Go back'
                 ]
             },
             {
@@ -66,7 +68,8 @@ async function mainApp() {
                 when: response => response.action === 'Update',
                 choices: [
                     'Employee role',
-                    'Employee manager'
+                    'Employee manager',
+                    'Go back'
                 ]
             },
             {
@@ -77,7 +80,8 @@ async function mainApp() {
                 choices: [
                     'Employee',
                     'Role',
-                    'Department'
+                    'Department',
+                    'Go back'
                 ]
             }
         ])
@@ -109,6 +113,8 @@ async function mainApp() {
                                 console.table(data)
                             })
                         break;
+                    case 'Go back':
+                        return
                     }
                     break;
                 case 'Add':
@@ -181,6 +187,8 @@ async function mainApp() {
                             console.log('====================\n')
                         })
                         break;
+                    case 'Go back':
+                        return
                     }
                     break;
                 case 'Update':
@@ -235,6 +243,8 @@ async function mainApp() {
                             console.log('=============================\n')
                         })
                         break;
+                    case 'Go back':
+                        return
                     }
                     break;
                 case 'Delete':

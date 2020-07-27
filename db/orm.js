@@ -39,19 +39,16 @@ const orm = {
         return names.map(data => ({name: data.name, value: data.id }))
     },
     updateRole: (value, id) => {
-        return db.query( 'UPDATE employee SET ? WHERE id=?',
-            [ { role_id: value}, id ] )
+        return db.query( 'UPDATE employee SET ? WHERE id=?', [ { role_id: value}, id ] )
     },
     updateManager: (value, id) => {
-        return db.query( 'UPDATE employee SET ? WHERE id=?',
-            [ { manager_id: value}, id ] )
+        return db.query( 'UPDATE employee SET ? WHERE id=?', [ { manager_id: value}, id ] )
     },
     deleteEmployee: (id) => {
         return db.query('DELETE FROM employee WHERE id=?', id)
     },
     deleteRole: async (id) => {
-        await db.query( 'UPDATE employee SET ? WHERE role_id=?',
-            [ { role_id: null}, id ] )
+        await db.query( 'UPDATE employee SET ? WHERE role_id=?', [ { role_id: null}, id ] )
         return db.query('DELETE FROM role WHERE id=?', id)
     },
     deleteDepartment: async (id) => {
@@ -62,5 +59,3 @@ const orm = {
 }
 
 module.exports = orm
-
-// CONCAT(first_name,' ',last_name) AS
