@@ -3,7 +3,7 @@ const db = require( './connection.js' )
 const orm = {
     selectAll: () => {
         return db.query(`
-		SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, salary, CONCAT(m.first_name,' ',m.last_name) AS manager
+		SELECT e.id, e.first_name, e.last_name, r.title AS role, d.name AS department, salary, CONCAT(m.first_name,' ',m.last_name) AS manager
 		FROM employee e 
 		LEFT JOIN employee m
 		ON e.manager_id = m.id

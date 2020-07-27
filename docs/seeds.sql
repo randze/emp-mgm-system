@@ -2,6 +2,7 @@ USE emp_mgm_homework;
 
 INSERT INTO employee VALUES(0, "Pat", "K", 1, null);
 INSERT INTO employee VALUES(0, "Randze", "K", 1, 1);
+INSERT INTO employee VALUES(0, "Three", "Three", null, null);
 
 INSERT INTO role VALUES(0, "The best", 1000000, 1);
 INSERT INTO role VALUES(0, "The elite", 900000, 2);
