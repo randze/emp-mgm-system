@@ -267,14 +267,38 @@ async function mainApp() {
                                 }
                             }
                         ]).then(async response => {
-                            await orm.deleteEmployee(response.id)
+                            await orm.deleteRole(response.id)
                             console.log('\n=============================')
-                            console.log('  Employee has been removed !')
+                            console.log('  Role has been removed !')
                             console.log('=============================\n')
                         })
                         break;
                     case 'Department':
                         console.log('*** DELETE DEPARTMENT ***')
+                        response = await inquirer.prompt([
+                            {
+                                type: 'list',
+                                message: 'Which department do you want to remove?\n',
+                                name: 'id',
+                                choices: () => {
+                                    return orm.returnDepartment()
+                                }
+                            },
+                            {
+                                type: 'confirm',
+                                message: '**WARNING** Removing department will also remove all roles associated with it?\n',
+                                name: 'confirm',
+                            }
+                        ]).then(async response => {
+                            if (response.confirm === true){
+                                await orm.deleteDepartment(response.id)
+                                console.log('\n=============================')
+                                console.log('  Department has been removed !')
+                                console.log('=============================\n')
+                            } else {
+                                return
+                            }
+                        })
                         break;
                     }
                     break;
