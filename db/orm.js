@@ -45,6 +45,15 @@ const orm = {
     updateManager: (value, id) => {
         return db.query( 'UPDATE employee SET ? WHERE id=?',
             [ { manager_id: value}, id ] )
+    },
+    deleteEmployee: (id) => {
+        return db.query('DELETE FROM employee WHERE id=?', id)
+    },
+    deleteRole: async (id) => {
+        await db.query('DELETE FROM employee WHERE id=?', id)
+    },
+    deleteDepartment: async (id) => {
+        return db.query('DELETE FROM employee WHERE id=?', id)
     }
 }
 

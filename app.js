@@ -33,6 +33,7 @@ async function mainApp() {
                     'View',
                     'Add',
                     'Update',
+                    'Delete',
                     'Exit'
                 ]
             },
@@ -66,6 +67,17 @@ async function mainApp() {
                 choices: [
                     'Employee role',
                     'Employee manager'
+                ]
+            },
+            {
+                type: 'list',
+                message: 'What would you like to delete?\n',
+                name: 'delete',
+                when: response => response.action === 'Delete',
+                choices: [
+                    'Employee',
+                    'Role',
+                    'Department'
                 ]
             }
         ])
@@ -222,6 +234,47 @@ async function mainApp() {
                             console.log('  Updated employee manager !')
                             console.log('=============================\n')
                         })
+                        break;
+                    }
+                    break;
+                case 'Delete':
+                    switch (response.delete) {
+                    case 'Employee':
+                        response = await inquirer.prompt([
+                            {
+                                type: 'list',
+                                message: 'Which employee do you want to remove?\n',
+                                name: 'id',
+                                choices: () => {
+                                    return orm.employeeNames()
+                                }
+                            }
+                        ]).then(async response => {
+                            await orm.deleteEmployee(response.id)
+                            console.log('\n=============================')
+                            console.log('  Employee has been removed !')
+                            console.log('=============================\n')
+                        })
+                        break;
+                    case 'Role':
+                        response = await inquirer.prompt([
+                            {
+                                type: 'list',
+                                message: 'Which role do you want to remove?\n',
+                                name: 'id',
+                                choices: () => {
+                                    return orm.returnRoles()
+                                }
+                            }
+                        ]).then(async response => {
+                            await orm.deleteEmployee(response.id)
+                            console.log('\n=============================')
+                            console.log('  Employee has been removed !')
+                            console.log('=============================\n')
+                        })
+                        break;
+                    case 'Department':
+                        console.log('*** DELETE DEPARTMENT ***')
                         break;
                     }
                     break;
